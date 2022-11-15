@@ -1,5 +1,6 @@
 import { connectToDatabase } from '../../../lib/db';
 import { hashPassword } from '../../../lib/auth';
+import jwt from 'jsonwebtoken';
 
 async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -8,9 +9,9 @@ async function handler(req, res) {
 
   const data = req.body;
 
-  const { email, password } = data;
+  const { email, password, passwordConfirm } = data;
 
-  if (!email || !email.includes('@') || !password || password.trim().length < 7) {
+  if (!email || !email.includes('@') || !password || password.trim().length < 7 || password !== passwordConfirm) {
     res.status(422).json({ message: 'Invalid input' });
     return;
   }
@@ -26,15 +27,43 @@ async function handler(req, res) {
     return;
   }
 
+  const token = jwt.sign({ email }, process.env.NEXTAUTH_SECRET, {
+    expiresIn: "1d"
+  })
+
   const hashedPassword = await hashPassword(password);
 
   const result = await db.collection('users').insertOne({
     email: email,
-    password: hashedPassword
+    password: hashedPassword,
+    token: token,
+    verifiedAt: " "
   });
 
-  res.status(201).json({ message: "Created User" });
+  // let dejta = {
+  //   email,
+  //   message: token
+  // }
+  // const rispons = await fetch('/api/auth/contact', {
+  //   method: 'POST',
+  //   headers: {
+  //     'Accept': 'application/json, text/plain, */*',
+  //     'Content-Type': 'application/json'
+  //   },
+  //   body: JSON.stringify(dejta)
+  // }).then((res) => {
+  //   console.log('Response received')
+  //   if (res.status === 200) {
+  //     console.log('Response succeeded!')
+  //     // setSubmitted(true)
+  //     // setName('')
+  //     // setEmail('')
+  //     // setBody('')
+  //   }
+  // })
   client.close();
+  res.status(201).json({ message: "User Created" });
+  return;
 };
 
 export default handler;

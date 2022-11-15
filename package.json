@@ -13,9 +13,11 @@
     "@emotion/styled": "^11.10.5",
     "@mui/material": "^5.10.14",
     "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.11.0",
     "next": "13.0.2",
     "next-auth": "^4.16.4",
+    "nodemailer": "^6.8.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   }
