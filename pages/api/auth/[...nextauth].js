@@ -34,5 +34,6 @@ export default NextAuth({
         return { email: user.email }; //what we return here will be encoded into jwt
       }
     })
-  ]
+  ],
+  secret: process.env.NEXTAUTH_SECRET
 }); 
