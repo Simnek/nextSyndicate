@@ -40,29 +40,25 @@ async function handler(req, res) {
     verifiedAt: " "
   });
 
-  // let dejta = {
-  //   email,
-  //   message: token
-  // }
-  // const rispons = await fetch('/api/auth/contact', {
-  //   method: 'POST',
-  //   headers: {
-  //     'Accept': 'application/json, text/plain, */*',
-  //     'Content-Type': 'application/json'
-  //   },
-  //   body: JSON.stringify(dejta)
-  // }).then((res) => {
-  //   console.log('Response received')
-  //   if (res.status === 200) {
-  //     console.log('Response succeeded!')
-  //     // setSubmitted(true)
-  //     // setName('')
-  //     // setEmail('')
-  //     // setBody('')
-  //   }
-  // })
+  let dejta = {
+    email,
+    message: token
+  }
+  const rispons = await fetch('http://localhost:3000/api/auth/contact', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json, text/plain, */*',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(dejta)
+  }).then((res) => {
+    console.log('Response received')
+    if (res.status === 200) {
+      console.log('Response succeeded!')
+    }
+  })
   client.close();
-  res.status(201).json({ message: "User Created" });
+  res.status(200).json({ message: "Email Sent" });
   return;
 };
 

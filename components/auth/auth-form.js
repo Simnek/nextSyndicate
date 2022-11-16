@@ -9,6 +9,7 @@ async function createUser(email, password, passwordConfirm) {
     method: 'POST',
     body: JSON.stringify({ email, password, passwordConfirm }),
     headers: {
+      'Accept': 'application/json',
       'Content-Type': 'application/json'
     }
   });
