@@ -1,8 +1,5 @@
-import { useSession, getSession } from 'next-auth/react';
-import { useEffect, useState } from 'react';
+import Link from "next/link";
 
-import ProfileForm from './profile-form';
-import UserForm from '../forms/UserForm';
 import classes from './user-profile.module.css';
 
 function UserProfile() {
@@ -26,8 +23,7 @@ function UserProfile() {
   return (
     <section className={classes.profile}>
       <h1>Your User Profile</h1>
-      {/* <ProfileForm /> */}
-      <UserForm />
+      <Link href='/profile/change-password'>ChangePassword</Link>
     </section>
   );
 }

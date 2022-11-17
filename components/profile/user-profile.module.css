@@ -6,3 +6,15 @@
 .profile h1 {
   font-size: 5rem;
 }
+
+.profile a {
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: #82a8fb;
+}
+
+.profile a:hover,
+.profile a:active,
+.profile a.active {
+  color: #001448;
+}

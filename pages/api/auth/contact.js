@@ -1,8 +1,4 @@
 import nodemailer from 'nodemailer';
-// import lib from 'lib';
-// import HttpsProxyAgent from 'http-proxy-agent';
-
-// const proxyAgent = new HttpsProxyAgent('http://mit4998:Smederevo123@10.21.2.24:3128/');
 
 export default function (req, res) {
   const transporter = nodemailer.createTransport({
@@ -14,16 +10,6 @@ export default function (req, res) {
       rejectUnauthorized: false,
     },
   });
-
-  // Using Node.js 14.x +
-  // use "lib" package from npm
-  // make API request
-  // let result = lib.url.temporary['@0.3.0'];
-  // console.log(result);
-  //.create({
-  //   url: `"http://localhost:3000/api/auth/verify/"${req.body.message}`, // required
-  //   ttl: 150
-  // });
 
   const tUrl = `http://localhost:3000/verify?token=${req.body.message}`;
 

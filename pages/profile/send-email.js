@@ -1,11 +1,11 @@
 import { getSession } from "next-auth/react";
 
-import UserProfile from "../components/profile/user-profile"
+import EmailForm from "../../components/forms/EmailForm";
 
-const ProfilePage = () => {
+const SendEmail = () => {
 
   return (
-    <UserProfile />
+    <EmailForm />
   )
 };
 
@@ -25,4 +25,4 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default ProfilePage;
+export default SendEmail;
