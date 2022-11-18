@@ -24,6 +24,10 @@ function UserProfile() {
     <section className={classes.profile}>
       <h1>Your User Profile</h1>
       <Link href='/profile/change-password'>ChangePassword</Link>
+      <Link href='/profile/add-news'>AddNews</Link>
+      <Link href='/profile/change-profile-data'>ChangeProfileData</Link>
+      <Link href='/profile/send-email'>SendEmail</Link>
+      <Link href='/profile/send-sms'>SendsSms</Link>
     </section>
   );
 }
