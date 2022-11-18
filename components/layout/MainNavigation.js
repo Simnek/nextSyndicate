@@ -21,7 +21,7 @@ function MainNavigation() {
             <Link href='/profile'>Profile</Link>
           </li>}
           {session && <li>
-            <button onClick={() => signOut()}>Logout</button>
+            <button className={classes.button} onClick={() => signOut()}>Logout</button>
           </li>}
         </ul>
       </nav>

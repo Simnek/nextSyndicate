@@ -5,20 +5,36 @@ const ChangePasswordForm = (props) => {
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [newPassword2, setNewPassword2] = useState("");
+  const [isChanged, setIsChanged] = useState("");
 
-  const handleOnClick = () => {
-    // const apiData = {
-    //     oldPassword,
-    //     newPassword
-    // }
-
-    props.onChangePass({
+  const handleOnClick = async () => {
+    const passwordData = {
       newPassword: newPassword,
       oldPassword: oldPassword,
       newPassword2: newPassword2,
+    };
+
+    const response = await fetch("/api/user/change-password", {
+      method: "PATCH",
+      body: JSON.stringify(passwordData),
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
-    //console.log(apiData);
+
+    const data = await response.json();
+
+    setIsChanged(data.message);
   };
+
+  // const handleOnClick = () => {
+  //   props.onChangePass({
+  //     newPassword: newPassword,
+  //     oldPassword: oldPassword,
+  //     newPassword2: newPassword2,
+  //   });
+  //   //console.log(apiData);
+  // };
 
   return (
     <Box>
@@ -62,6 +78,9 @@ const ChangePasswordForm = (props) => {
           <Button variant="contained" onClick={handleOnClick}>
             Change password
           </Button>
+        </Grid>
+        <Grid item xs={12}>
+          {isChanged}
         </Grid>
       </Grid>
     </Box>

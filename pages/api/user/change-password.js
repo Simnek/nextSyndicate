@@ -53,9 +53,14 @@ const handler = async (req, res) => {
   const hashedPassword = await hashPassword(newPassword);
 
   const result = await usersCollection.updateOne({ email: userEmail }, { $set: { password: hashedPassword } });
+  if (result.modifiedCount !== 1) {
+    client.close();
+    res.status(500).json({ message: 'Could not change password, try again later!' })
+  }
 
   client.close();
   res.status(200).json({ message: 'Password updated' })
+
 };
 
 export default handler;

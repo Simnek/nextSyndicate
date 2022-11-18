@@ -37,3 +37,21 @@
 .header a.active {
   color: rgb(255, 255, 255);
 }
+
+.header button {
+  background: none !important;
+  border: none;
+  padding: 0 !important;
+  /*input has OS specific font-family*/
+  color: rgb(99, 153, 0);
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: #82a8fb;
+}
+
+.header button:hover,
+.header button:active,
+.header button.active {
+  color: rgb(255, 255, 255);
+}

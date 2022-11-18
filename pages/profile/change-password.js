@@ -4,22 +4,10 @@ import ChangePasswordForm from "../../components/forms/ChangePasswordForm";
 
 const ChangePassword = () => {
 
-  const changePassHandler = async (passwordData) => {
-    const response = await fetch('/api/user/change-password', {
-      method: 'PATCH',
-      body: JSON.stringify(passwordData),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
 
-    const data = await response.json();
-
-    console.log(data);
-  }
 
   return (
-    <ChangePasswordForm onChangePass={changePassHandler} />
+    <ChangePasswordForm />
   )
 };
 

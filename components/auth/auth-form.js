@@ -24,6 +24,24 @@ async function createUser(email, password, passwordConfirm) {
   return data;
 }
 
+// async function checkIfVerified(email) {
+//   const response = await fetch('/api/auth/isVerified', {
+//     method: 'POST',
+//     body: JSON.stringify({ email }),
+//     headers: {
+//       'Accept': 'application/json',
+//       'Content-Type': 'application/json'
+//     }
+//   });
+
+//   console.log(response);
+//   if (!response.ok) {
+//     throw new Error('Something went wrong!');
+//   }
+
+//   return false;
+// }
+
 function AuthForm() {
   const router = useRouter();
 
@@ -51,11 +69,14 @@ function AuthForm() {
 
     //optional: Add validation
 
+    //const isVerified = await checkIfVerified(enteredEmail);
+
     if (isLogin) {
       const result = await signIn('credentials', {
         redirect: false,
         email: enteredEmail,
         password: enteredPassword,
+        //verified: isVerified
       });
       if (!result.error) {
         router.replace('/profile');
