@@ -4,7 +4,7 @@ export default function (req, res) {
   const transporter = nodemailer.createTransport({
     port: 25,
     secure: false,
-    host: "mail-hub.zelsd.rs",
+    host: process.env.MAIL_HOST,
     tls: {
       // do not fail on invalid certs
       rejectUnauthorized: false,
