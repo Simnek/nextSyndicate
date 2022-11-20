@@ -14,18 +14,14 @@ const StartingPage = (props) => {
       </Head>
       <NewsList newsData={props.news} className={styles.card} />
       <footer className={styles.footer}>
-        <a
-          href="https://next-js-finalatlas.vercel.app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/sditdevalt.svg" alt="SdItDev Logo" width={72} height={50} />
-          </span>
-        </a>
+
+        Powered by{' '}
+        <span className={styles.logo}>
+          <Image src="/sditdevalt.svg" alt="SdItDev Logo" width={72} height={50} />
+        </span>
+
       </footer>
-    </div>
+    </div >
   )
 };
 
