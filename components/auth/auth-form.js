@@ -5,13 +5,22 @@ import { useRouter } from 'next/router';
 import classes from './auth-form.module.css';
 
 async function createUser(email, password, passwordConfirm) {
-  const response = await fetch('/api/auth/signup', {
+  const response = await fetch('http://10.21.57.43:3000/api/auth/signup', {
     method: 'POST',
     body: JSON.stringify({ email, password, passwordConfirm }),
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     }
+  }).then((res) => {
+    console.log('Response received')
+    if (res.status === 200) {
+      console.log('Response succeeded!')
+    }
+    return;
+  }).catch((err) => {
+    res.status(err).json({ message: "Something went wrong" });
+    return;
   });
 
   const data = await response.json();

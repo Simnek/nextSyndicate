@@ -27,7 +27,7 @@ async function handler(req, res) {
     return;
   }
 
-  const token = jwt.sign({ email }, process.env.NEXTAUTH_SECRET, {
+  const token = jwt.sign({ email }, process.env.NEXT_PUBLIC_NEXTAUTH_SECRET, {
     expiresIn: "1d"
   })
 
@@ -44,10 +44,10 @@ async function handler(req, res) {
     email,
     message: token
   }
-  const rispons = await fetch('http://localhost:3000/api/auth/contact', {
+  const rispons = await fetch('http://10.21.57.43:3000/api/auth/contact', {
     method: 'POST',
     headers: {
-      'Accept': 'application/json, text/plain, */*',
+      'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(dejta)
@@ -56,6 +56,10 @@ async function handler(req, res) {
     if (res.status === 200) {
       console.log('Response succeeded!')
     }
+    return;
+  }).catch((err) => {
+    res.status(err).json({ message: "Something went wrong" });
+    return;
   })
   client.close();
   res.status(200).json({ message: "Email Sent" });

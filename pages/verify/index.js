@@ -14,8 +14,8 @@ const Verify = (props) => {
 }
 
 export async function getServerSideProps(context) {
-  const uri = "mongodb://PC318147:27017/?serverSelectionTimeoutMS=5000&connectTimeoutMS=10000";
-
+  //const uri = "mongodb://PC318147:27017/?serverSelectionTimeoutMS=5000&connectTimeoutMS=10000";
+  const uri = "mongodb://10.21.57.43:27017/?serverSelectionTimeoutMS=5000&connectTimeoutMS=10000";
   const client = await MongoClient.connect(uri);
 
   const db = client.db('prod');

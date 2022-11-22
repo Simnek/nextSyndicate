@@ -21,7 +21,8 @@ const News = (props) => {
 
 export async function getStaticPaths() {
   //const uri = "mongodb+srv://sdItDev:hTxVCd70vmwI5gQl@cluster0.egpair0.mongodb.net/?retryWrites=true&w=majority";
-  const uri = "mongodb://PC318147:27017/?serverSelectionTimeoutMS=5000&connectTimeoutMS=10000";
+  //const uri = "mongodb://PC318147:27017/?serverSelectionTimeoutMS=5000&connectTimeoutMS=10000";
+  const uri = "mongodb://10.21.57.43:27017/?serverSelectionTimeoutMS=5000&connectTimeoutMS=10000";
   const client = await MongoClient.connect(uri);
 
   const db = client.db('prod');
@@ -44,7 +45,8 @@ export async function getStaticProps(context) { //context isnt the same as getSe
   const newsId = context.params.newsId; //getting concrete meetupId (name has to be the same as [meetupId])
   //const uri = "mongodb+srv://sdItDev:hTxVCd70vmwI5gQl@cluster0.egpair0.mongodb.net/?retryWrites=true&w=majority";
   console.log(newsId);
-  const uri = "mongodb://PC318147:27017/?serverSelectionTimeoutMS=5000&connectTimeoutMS=10000";
+  //const uri = "mongodb://PC318147:27017/?serverSelectionTimeoutMS=5000&connectTimeoutMS=10000";
+  const uri = "mongodb://10.21.57.43:27017/?serverSelectionTimeoutMS=5000&connectTimeoutMS=10000";
   const client = await MongoClient.connect(uri);
 
   const db = client.db('prod');

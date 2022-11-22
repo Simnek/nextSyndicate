@@ -4,14 +4,14 @@ export default function (req, res) {
   const transporter = nodemailer.createTransport({
     port: 25,
     secure: false,
-    host: process.env.MAIL_HOST,
+    host: "mail-hub.zelsd.rs",
     tls: {
       // do not fail on invalid certs
       rejectUnauthorized: false,
     },
   });
 
-  const tUrl = `http://localhost:3000/verify?token=${req.body.message}`;
+  const tUrl = `http://10.21.57.43:3000/verify?token=${req.body.message}`;
 
 
   console.log(tUrl);
