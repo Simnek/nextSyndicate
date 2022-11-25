@@ -1,20 +1,21 @@
 import nodemailer from 'nodemailer';
+import { config } from "../../../config";
 
 export default function (req, res) {
   const transporter = nodemailer.createTransport({
     port: 25,
     secure: false,
-    host: "mail-hub.zelsd.rs",
+    host: config.mailHost,
     tls: {
       // do not fail on invalid certs
       rejectUnauthorized: false,
     },
   });
 
-  const tUrl = `http://10.21.57.43:3000/verify?token=${req.body.message}`;
+  const tUrl = `http://10.21.57.43:3000/verify/${req.body.message}`;
 
 
-  console.log(tUrl);
+  console.log(config);
 
   // let result = await fetch('http://url.api.stdlib.com/temporary@0.3.0/create', {
   //   method: 'POST',

@@ -1,4 +1,4 @@
-import { connectToDatabase } from '../../../lib/db';
+import connectToDatabase from '../../../lib/db';
 import { hashPassword } from '../../../lib/auth';
 import jwt from 'jsonwebtoken';
 

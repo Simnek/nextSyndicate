@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import NewsDetail from "../../components/news/NewsDetail";
 
-import { MongoClient, ObjectId } from 'mongodb';
-
+import connectToDatabase from '../../lib/db';
+import { ObjectId } from 'mongodb';
 const News = (props) => {
 
   return (
@@ -22,8 +22,9 @@ const News = (props) => {
 export async function getStaticPaths() {
   //const uri = "mongodb+srv://sdItDev:hTxVCd70vmwI5gQl@cluster0.egpair0.mongodb.net/?retryWrites=true&w=majority";
   //const uri = "mongodb://PC318147:27017/?serverSelectionTimeoutMS=5000&connectTimeoutMS=10000";
-  const uri = "mongodb://10.21.57.43:27017/?serverSelectionTimeoutMS=5000&connectTimeoutMS=10000";
-  const client = await MongoClient.connect(uri);
+  //const uri = "mongodb://10.21.57.43:27017/?serverSelectionTimeoutMS=5000&connectTimeoutMS=10000";
+  //const client = await MongoClient.connect(uri);
+  const client = await connectToDatabase();
 
   const db = client.db('prod');
 
@@ -46,8 +47,9 @@ export async function getStaticProps(context) { //context isnt the same as getSe
   //const uri = "mongodb+srv://sdItDev:hTxVCd70vmwI5gQl@cluster0.egpair0.mongodb.net/?retryWrites=true&w=majority";
   console.log(newsId);
   //const uri = "mongodb://PC318147:27017/?serverSelectionTimeoutMS=5000&connectTimeoutMS=10000";
-  const uri = "mongodb://10.21.57.43:27017/?serverSelectionTimeoutMS=5000&connectTimeoutMS=10000";
-  const client = await MongoClient.connect(uri);
+  //const uri = "mongodb://10.21.57.43:27017/?serverSelectionTimeoutMS=5000&connectTimeoutMS=10000";
+  //const client = await MongoClient.connect(uri);
+  const client = await connectToDatabase();
 
   const db = client.db('prod');
 
