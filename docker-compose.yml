@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  web:
+    build: .
+    networks:
+      - "next-webapp-network"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo:5.0.14
+    restart: always
+    networks:
+      - "next-webapp-network"
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+
+networks:
+  next-webapp-network:
+    external: true

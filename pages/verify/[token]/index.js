@@ -22,7 +22,7 @@ export async function getStaticPaths() {
   //const client = await MongoClient.connect(uri);
   const client = await connectToDatabase();
 
-  const db = client.db();
+  const db = client.db('prod');
 
   const userCollection = db.collection('users');
 
