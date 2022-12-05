@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer';
 import { config } from "../../../config";
 
-export default function (req, res) {
+export default async function (req, res) {
   const transporter = nodemailer.createTransport({
     port: 25,
     secure: false,
@@ -13,9 +13,6 @@ export default function (req, res) {
   });
 
   const tUrl = `http://10.21.57.43:3000/verify/${req.body.message}`;
-
-
-  console.log(config);
 
   // let result = await fetch('http://url.api.stdlib.com/temporary@0.3.0/create', {
   //   method: 'POST',
@@ -37,13 +34,12 @@ export default function (req, res) {
 
   transporter.sendMail(mailOption, (err, data) => {
     if (err) {
-      res.status(401).json({ message: err });
-      return res;
-    } else {
-      console.log("mail sent");
-      res.status(200).json({ message: "Mail sent" });
-      return res;
+      console.log(err);
+      return res.status(500).json({ message: err });
     }
+    console.log("email data", data);
+    res.status(200).json({ message: "Email sent" });
+    return data;
   });
 
 }

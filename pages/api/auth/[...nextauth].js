@@ -4,6 +4,7 @@ import NextAuth from 'next-auth';
 import CredentialsProvider from "next-auth/providers/credentials";
 import { verifyPassword } from '../../../lib/auth';
 import connectToDatabase from '../../../lib/db';
+import { config } from '../../../config';
 
 //we execute a function and it creates a handler function which we export, we also configure it here
 export default NextAuth({
@@ -36,5 +37,5 @@ export default NextAuth({
       }
     })
   ],
-  secret: process.env.NEXTAUTH_SECRET
+  secret: config.secret
 }); 

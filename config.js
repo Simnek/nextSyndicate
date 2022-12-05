@@ -15,5 +15,5 @@ export const config = {
   dbLocal: getEnvironmentVariable("NEXT_PUBLIC_CONNECTION_STRING_LOCAL"),
   dbAtlas: getEnvironmentVariable("NEXT_PUBLIC_CONNECTION_STRING_ATLAS"),
   dbDocker: getEnvironmentVariable("NEXT_PUBLIC_CONNECTION_STRING_DOCKER"),
-  localUrl: getEnvironmentVariable("NEXT_PUBLIC_NEXT_URL"),
+  localUrl: getEnvironmentVariable("NEXTAUTH_URL"),
 };

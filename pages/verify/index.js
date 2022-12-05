@@ -1,6 +1,5 @@
 import Head from 'next/head';
-
-import { MongoClient } from 'mongodb';
+import connectToDatabase from '../../lib/db';
 
 const Verify = (props) => {
 
@@ -14,9 +13,9 @@ const Verify = (props) => {
 }
 
 export async function getServerSideProps(context) {
-  const uri = "mongodb://PC318147:27017/?serverSelectionTimeoutMS=5000&connectTimeoutMS=10000";
+  //const uri = "mongodb://PC318147:27017/?serverSelectionTimeoutMS=5000&connectTimeoutMS=10000";
 
-  const client = await MongoClient.connect(uri);
+  const client = await connectToDatabase();
 
   const db = client.db('prod');
 

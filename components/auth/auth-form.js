@@ -12,20 +12,10 @@ async function createUser(email, password, passwordConfirm) {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     }
-  }).then((res) => {
-    console.log('Response received')
-    if (res.status === 200) {
-      console.log('Response succeeded!')
-    }
-  }).catch((err) => {
   });
 
   const data = await response.json();
-  console.log(data)
-
-  if (!response.ok && response.status !== 422) {
-    throw new Error(data.message || 'Something went wrong!');
-  }
+  console.log(data);
 
   return data;
 }
@@ -94,7 +84,8 @@ function AuthForm() {
     } else {
       try {
         const result = await createUser(enteredEmail, enteredPassword, enteredPasswordConfirm);
-        if (result.message === "User Created") {
+        console.log("Zato sto sam", result);
+        if (result.message.substring(0, 10) === "Email sent") {
           setIsLogin((prevState) => !prevState);
         }
         setMessage(result.message);

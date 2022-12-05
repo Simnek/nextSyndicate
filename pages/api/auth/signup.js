@@ -12,8 +12,7 @@ async function handler(req, res) {
   const { email, password, passwordConfirm } = data;
 
   if (!email || !email.includes('@') || !password || password.trim().length < 7 || password !== passwordConfirm) {
-    res.status(422).json({ message: 'Invalid input' });
-    return;
+    return res.status(422).send({ message: 'Invalid input!' });
   }
 
   const client = await connectToDatabase();
@@ -23,8 +22,7 @@ async function handler(req, res) {
   const existingUser = await db.collection('users').findOne({ email: email })
 
   if (existingUser) {
-    res.status(422).json({ message: 'User with the same email already exists!' });
-    return;
+    return res.status(422).send({ message: 'User with the same email already exists!' });
   }
 
   const token = jwt.sign({ email }, process.env.NEXT_PUBLIC_NEXTAUTH_SECRET, {
@@ -33,7 +31,7 @@ async function handler(req, res) {
 
   const hashedPassword = await hashPassword(password);
 
-  const result = await db.collection('users').insertOne({
+  await db.collection('users').insertOne({
     email: email,
     password: hashedPassword,
     token: token,
@@ -44,26 +42,20 @@ async function handler(req, res) {
     email,
     message: token
   }
-  const rispons = await fetch('http://10.21.57.43:3000/api/auth/contact', {
+
+  const response = await fetch('http://10.21.57.43:3000/api/auth/contact', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(dejta)
-  }).then((res) => {
-    console.log('Response received')
-    if (res.status === 200) {
-      console.log('Response succeeded!')
-    }
-    return;
-  }).catch((err) => {
-    res.status(err).json({ message: "Something went wrong" });
-    return;
   })
+
+  const jsonResponse = await response.json();
+
   client.close();
-  res.status(200).json({ message: "Email Sent" });
-  return;
+  return res.status(201).send({ message: jsonResponse.message + " to " + dejta.email });
 };
 
 export default handler;
