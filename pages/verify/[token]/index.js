@@ -1,15 +1,17 @@
 import Head from 'next/head';
 
 import connectToDatabase from '../../../lib/db';
+
 //import { MongoClient } from 'mongodb';
 
-const Verify = () => {
+const Verify = (props) => {
 
   return (
     <>
       <Head>
         <title>Verify</title>
       </Head>
+      <h1>{props.ver}</h1>
     </>
   )
 }
@@ -50,7 +52,7 @@ export async function getStaticProps(context) {
 
   const exists = userCollection.findOne({ token: context.params.token })
   console.log(context.params);
-
+  let ver = "Neuspesna verifikacija, probajte ponovo kasnije!";
   if (exists) {
     const filter = { token: context.params.token };
     const updateUser = {
@@ -59,15 +61,21 @@ export async function getStaticProps(context) {
       },
     };
     const result = await userCollection.updateOne(filter, updateUser);
-    console.log(
-      `${result.matchedCount} document(s) matched the filter, updated ${result.modifiedCount} document(s)`,
-    );
+    // console.log(
+    //   `${result.matchedCount} document(s) matched the filter, updated ${result.modifiedCount} document(s)`,
+    // );
+
+
+    if (result.matchedCount > 0) {
+      ver = "Uspesna verifikacija!";
+    }
   }
 
   client.close();
 
   return {
     props: {
+      ver: ver
     }
   };
 }

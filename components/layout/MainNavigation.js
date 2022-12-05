@@ -6,9 +6,6 @@ import classes from './MainNavigation.module.css';
 function MainNavigation() {
   const { data: session, status } = useSession();
 
-  console.log("session", session);
-  console.log("status", status);
-
   return (
     <header className={classes.header}>
       <Link href='/' className={classes.logo}>Union</Link>

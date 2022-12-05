@@ -15,7 +15,6 @@ async function createUser(email, password, passwordConfirm) {
   });
 
   const data = await response.json();
-  console.log(data);
 
   return data;
 }
@@ -84,7 +83,6 @@ function AuthForm() {
     } else {
       try {
         const result = await createUser(enteredEmail, enteredPassword, enteredPasswordConfirm);
-        console.log("Zato sto sam", result);
         if (result.message.substring(0, 10) === "Email sent") {
           setIsLogin((prevState) => !prevState);
         }

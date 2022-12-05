@@ -12,7 +12,8 @@ export default async function (req, res) {
     },
   });
 
-  const tUrl = `http://10.21.57.43:3000/verify/${req.body.message}`;
+  //const tUrl = `http://10.21.57.43:3000/verify/${req.body.message}`;
+  const tUrl = `http://nextSyndicate.vercel.app/verify/${req.body.message}`
 
   // let result = await fetch('http://url.api.stdlib.com/temporary@0.3.0/create', {
   //   method: 'POST',
@@ -34,10 +35,8 @@ export default async function (req, res) {
 
   transporter.sendMail(mailOption, (err, data) => {
     if (err) {
-      console.log(err);
       return res.status(500).json({ message: err });
     }
-    console.log("email data", data);
     res.status(200).json({ message: "Email sent" });
     return data;
   });

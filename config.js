@@ -10,10 +10,11 @@ const getEnvironmentVariable = (environmentVariable) => {
 };
 
 export const config = {
-  mailHost: getEnvironmentVariable("NEXT_PUBLIC_MAIL_HOST"),
-  secret: getEnvironmentVariable("NEXT_PUBLIC_NEXTAUTH_SECRET"),
-  dbLocal: getEnvironmentVariable("NEXT_PUBLIC_CONNECTION_STRING_LOCAL"),
-  dbAtlas: getEnvironmentVariable("NEXT_PUBLIC_CONNECTION_STRING_ATLAS"),
-  dbDocker: getEnvironmentVariable("NEXT_PUBLIC_CONNECTION_STRING_DOCKER"),
+  mailHost: getEnvironmentVariable("MAIL_HOST"),
+  secret: getEnvironmentVariable("NEXTAUTH_SECRET"),
+  dbLocal: getEnvironmentVariable("CONNECTION_STRING_LOCAL"),
+  dbAtlas: getEnvironmentVariable("CONNECTION_STRING_ATLAS"),
+  dbDocker: getEnvironmentVariable("CONNECTION_STRING_DOCKER"),
   localUrl: getEnvironmentVariable("NEXTAUTH_URL"),
+  vercelUrl: getEnvironmentVariable("VERCEL_URL")
 };
