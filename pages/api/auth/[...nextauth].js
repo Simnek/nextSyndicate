@@ -17,7 +17,7 @@ export default NextAuth({
         const client = await connectToDatabase();
 
         const usersCollection = client.db('prod').collection('users');
-        const user = await usersCollection.findOne({ email: credentials.email, verifiedAt: 1 });
+        const user = await usersCollection.findOne({ email: credentials.email }); // posle email treba da stoji , verifiedAt: 1 kad je ukljuceno slanje maila
 
         if (!user) {
           client.close();

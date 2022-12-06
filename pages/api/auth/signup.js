@@ -44,19 +44,20 @@ async function handler(req, res) {
     message: token
   }
 
-  const response = await fetch(`${process.env.NEXT_URL}/api/auth/contact`, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(dejta)
-  })
+  // const response = await fetch(`${process.env.NEXT_URL}/api/auth/contact`, {
+  //   method: 'POST',
+  //   headers: {
+  //     'Accept': 'application/json',
+  //     'Content-Type': 'application/json'
+  //   },
+  //   body: JSON.stringify(dejta)
+  // })
 
-  const jsonResponse = await response.json();
+  // const jsonResponse = await response.json();
 
   client.close();
-  return res.status(201).send({ message: jsonResponse.message + " to " + dejta.email });
+  //return res.status(201).send({ message: jsonResponse.message + " to " + dejta.email });
+  return res.status(201).send({ message: "User Created, You Can Now Login." });
 };
 
 export default handler;
