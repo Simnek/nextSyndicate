@@ -57,7 +57,7 @@ async function handler(req, res) {
 
   client.close();
   //return res.status(201).send({ message: jsonResponse.message + " to " + dejta.email });
-  return res.status(201).send({ message: "User Created, You Can Now Login." });
+  return res.status(201).send({ message: "User created, you can now login." });
 };
 
 export default handler;
