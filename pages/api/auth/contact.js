@@ -1,11 +1,11 @@
 import nodemailer from 'nodemailer';
-import { config } from "../../../config";
+// import { config } from "../../../config";
 
 export default async function (req, res) {
   const transporter = nodemailer.createTransport({
     port: 25,
     secure: false,
-    host: config.mailHost,
+    host: process.env.MAIL_HOST,
     tls: {
       // do not fail on invalid certs
       rejectUnauthorized: false,
@@ -13,7 +13,7 @@ export default async function (req, res) {
   });
 
   //const tUrl = `http://10.21.57.43:3000/verify/${req.body.message}`;
-  const tUrl = `http://nextSyndicate.vercel.app/verify/${req.body.message}`
+  const tUrl = `${process.env.NEXT_URL}/verify/${req.body.message}`
 
   // let result = await fetch('http://url.api.stdlib.com/temporary@0.3.0/create', {
   //   method: 'POST',
@@ -27,10 +27,10 @@ export default async function (req, res) {
   // console.log(result);
 
   const mailOption = {
-    from: 'nextSyndicate@hbisserbia.rs',
+    from: 'next-syndicate@verify.com',
     to: `${req.body.email}`,
     subject: 'Verify NextSyndicate Account',
-    html: `<a href=${tUrl}>Verify</a>`,
+    html: `<a href=${tUrl}>Click on this link to verify your NextSyndicate user account</a>`,
   };
 
   transporter.sendMail(mailOption, (err, data) => {

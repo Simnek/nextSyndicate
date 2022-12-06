@@ -1,7 +1,7 @@
 import connectToDatabase from '../../../lib/db';
 import { hashPassword } from '../../../lib/auth';
 import jwt from 'jsonwebtoken';
-import { config } from "../../../config";
+// import { config } from "../../../config";
 
 async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -26,7 +26,7 @@ async function handler(req, res) {
     return res.status(422).send({ message: 'User with the same email already exists!' });
   }
 
-  const token = jwt.sign({ email }, config.secret, {
+  const token = jwt.sign({ email }, process.env.NEXTAUTH_SECRET, {
     expiresIn: "1d"
   })
 
@@ -44,7 +44,7 @@ async function handler(req, res) {
     message: token
   }
 
-  const response = await fetch(`${config.vercelUrl}/api/auth/contact`, {
+  const response = await fetch(`${process.env.NEXT_URL}/api/auth/contact`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
